@@ -1,0 +1,10 @@
+需要下载虚拟机：
+https://www.virtualbox.org/wiki/Downloads
+
+然后根据连接下载VirtualBox的镜像：
+https://d1.docs.allwinnertech.com/study/study_3ubuntu/
+
+下载完成后即可使用
+
+用户名：allwinner
+密码：123456
