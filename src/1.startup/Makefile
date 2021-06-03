@@ -33,7 +33,7 @@ ifneq ($(shell $(CC) -dumpspecs 2>/dev/null | grep -e '[^f]nopie'),)
 CFLAGS += -fno-pie -nopie
 endif
 
-LDFLAGS = -z max-page-size=4096
+LDFLAGS = -z max-page-size=4096 -Map=demo.map
 
 all: Image
 Image: $(subst .c,.o,$(wildcard *.c)) $(subst .S,.o,$(wildcard *.S))
@@ -45,7 +45,7 @@ Image: $(subst .c,.o,$(wildcard *.c)) $(subst .S,.o,$(wildcard *.S))
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.d *.o startup.elf *.asm Image
+	rm -f *.d *.o startup.elf *.asm *.map Image
 
 asm: Image
-	$(OBJDUMP) -S fw_bin/startup.elf > fw_bin/demo.asm
+	$(OBJDUMP) -S fw_bin/startup.elf > demo.asm
