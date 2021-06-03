@@ -10,7 +10,6 @@ extern "C" {
 #define REGSZ   8
 #define RVPTR   .dword
 
-
 #define MSTATUS_UIE			(1 << 0)
 #define MSTATUS_SIE			(1 << 1)
 #define MSTATUS_MIE			(1 << 3)
