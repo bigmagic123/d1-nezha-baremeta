@@ -25,3 +25,10 @@ https://github.com/bigmagic123/xfel/tree/win32
 ./build_win32.sh
 ```
 就可以完成编译过程了。
+
+RISCV交叉编译工具链的下载
+
+```
+链接：https://pan.baidu.com/s/1Mpfv_6BlarLSVZcgs548HQ 
+提取码：mipy 
+```
