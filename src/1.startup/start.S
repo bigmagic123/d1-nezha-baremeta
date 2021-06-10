@@ -149,48 +149,8 @@ reset:
 	div t0, t0, t4
 	mul t0, t0, t3
 	sub sp, t2, t0
-
-	/* Initial system jtag, uart and clock */
-	//call sys_jtag_init
-	//call sys_uart_init
-	//call sys_clock_init
-
+	
 	j main
-	/* Copyself to link address */
-//	la t0, _start
-//	la t1, _image_start
-//	LREG t1, (t1)
-//	beq t0, t1, 1f
-//	la a0, _image_start
-//	LREG a0, (a0)
-//	la a2, _image_end
-//	LREG a2, (a2)
-//	sub a2, a2, a0
-//	la a1, _start
-//	call memcpy
-//1:	nop
-
-	/* Clear bss section */
-//	la a0, _bss_start
-//	LREG a0, (a0)
-//	la a2, _bss_end
-//	LREG a2, (a2)
-//	sub a2, a2, a0
-//	li a1, 0
-//	call memset
-
-//	/* Call _main */
-//	la t1, _image_start
-//	LREG t1, (t1)
-//	la t2, _start
-//	sub t0, t1, t2
-//	la a0, _main
-//	add a0, a0, t0
-//	jr a0
-//_main:
-//	call xboot_main
-//	j _main
-
 /*
  * Exception vectors.
  */
