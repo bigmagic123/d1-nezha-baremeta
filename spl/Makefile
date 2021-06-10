@@ -107,15 +107,15 @@ ifeq ($(shell echo ${LICHEE_BOARD} |grep -o fpga ),fpga)
 endif
 
 
-CP_BOARD=$(filter $(BOARD), $(SUPPORT_BOARD))
-ifeq (x$(CP_BOARD), x)
-ifneq (x$(LICHEE_IC), x)
-CP_BOARD=$(LICHEE_IC)
-endif
-ifeq (x$(CP_BOARD), x)
-CP_BOARD=$(PLATFORM)
-endif
-endif
+#CP_BOARD=$(filter $(BOARD), $(SUPPORT_BOARD))
+#ifeq (x$(CP_BOARD), x)
+#ifneq (x$(LICHEE_IC), x)
+#CP_BOARD=$(LICHEE_IC)
+#endif
+#ifeq (x$(CP_BOARD), x)
+#CP_BOARD=$(PLATFORM)
+#endif
+#endif
 
 ifeq (x$(CPU), xriscv64)
 #riscv

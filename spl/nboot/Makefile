@@ -108,37 +108,37 @@ endef
 
 spinor:	 $(LIBS) boot0.lds
 	$(call build_boot0_with_suffix,_spinor)
-	@-cp -v boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/
-	@-cp -v boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/
+#	@-cp -v boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/
+#	@-cp -v boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/
 
 mmc:	 $(LIBS) boot0.lds
 	$(call build_boot0_with_suffix,_sdcard)
-	@-cp -v boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/
-	@-cp -v boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/
+#	@-cp -v boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/
+#	@-cp -v boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/
 
 nand:	 $(LIBS) boot0.lds
 	$(call build_boot0_with_suffix,_nand)
-	@-cp -v boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/
-	@-cp -v boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/
+#	@-cp -v boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/
+#	@-cp -v boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/
 
 offline_secure_spinor:	 $(LIBS) boot0.lds $(LIBNAND)
 	$(call build_boot0_with_suffix,_offline_secure)
-	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin
-	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin
+#	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin
+#	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/boot0_spinor_$(PLATFORM)$(DRAM_TYPE_NAME).bin
 
 offline_secure_mmc:	 $(LIBS) boot0.lds $(LIBNAND)
 	$(call build_boot0_with_suffix,_offline_secure)
-	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin
-	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin
+#	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin
+#	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/boot0_sdcard_$(PLATFORM)$(DRAM_TYPE_NAME).bin
 
 offline_secure_nand:	 $(LIBS) boot0.lds $(LIBNAND)
 	$(call build_boot0_with_suffix,_offline_secure)
-	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin
-	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin
+#	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(TARGETDIR)/boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin
+#	@-cp -v boot0_offline_secure_$(PLATFORM)$(DRAM_TYPE_NAME).bin $(LICHEE_PLAT_OUT)/boot0_nand_$(PLATFORM)$(DRAM_TYPE_NAME).bin
 
 simulate:	 $(LIBS) boot0.lds
 	$(call build_boot0_with_suffix,_simulate)
-	@-mv boot0_simulate_$(PLATFORM)$(DRAM_TYPE_NAME).bin boot0_simulate_$(PLATFORM)_$(CFG_SUNXI_SIM_SIZE_KB)KB.bin
+#	@-mv boot0_simulate_$(PLATFORM)$(DRAM_TYPE_NAME).bin boot0_simulate_$(PLATFORM)_$(CFG_SUNXI_SIM_SIZE_KB)KB.bin
 
 mmc_$(DRAM_TYPE):mmc
 nand_$(DRAM_TYPE):nand
