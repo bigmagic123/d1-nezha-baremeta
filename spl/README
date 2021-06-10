@@ -1,0 +1,24 @@
+
+1.build nand
+make p=sun50iw3p1 m=nand
+make boot0
+
+2.build mmc
+make p=sun50iw3p1 m=mmc
+make boot0
+
+3.build spinor
+make p=sun50iw3p1 m=spinor
+make boot0
+
+3.build fes
+make p=sun50iw3p1 m=fes
+make fes
+
+4.build sboot
+make p=sun50iw3p1 m=sboot
+make sboot
+
+5.show degbug message
+make boot0|sboot|fes  V=1
+
