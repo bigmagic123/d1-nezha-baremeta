@@ -1,0 +1,21 @@
+
+OUTPUT_ARCH(riscv)
+ENTRY(standby_main)
+
+SECTIONS
+{
+	.text :
+	{
+		__standby_start = . ;
+		libsrc/head.o( .rodata )
+		main.o(.text.startup)
+		*(.text)
+		*(.rodata)
+	}
+
+	.data   : { *(.data) }
+	__bss_start = . ;
+	.bss : { *(.sbss) *(.scommon) *(.bss) *(COMMON) }
+	__bss_end = .;
+	__standby_end = . ;
+}
