@@ -58,7 +58,7 @@ reset:
 	li x31, 0
 
 	/* Enable FPU and accelerator if present */
-	li t0, MSTATUS_FS | MSTATUS_XS
+	li t0, MSTATUS_FS | MSTATUS_XS | (0x01800000)
 	csrs mstatus, t0
 
 #if __riscv_flen == 32

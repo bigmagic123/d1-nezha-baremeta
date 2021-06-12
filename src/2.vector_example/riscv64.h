@@ -18,6 +18,7 @@ extern "C" {
 #define MSTATUS_MPIE		(1 << 7)
 #define MSTATUS_SPP			(1 << 8)
 #define MSTATUS_MPP			(3 << 11)
+#define MSTATUS_RVV			(3 << 9)
 #define MSTATUS_FS			(3 << 13)
 #define MSTATUS_XS			(3 << 15)
 #define MSTATUS_MPRV		(1 << 17)
