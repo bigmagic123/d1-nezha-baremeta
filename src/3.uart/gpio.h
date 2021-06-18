@@ -1,6 +1,7 @@
 #ifndef __D1_GPIO_H__
 #define __D1_GPIO_H__
 
+#include <types.h>
 //d1 gpio base addr
 #define D1_GPIO_BASE    (0x02000000)
 
@@ -97,5 +98,43 @@
 #define PIO_POW_MS_CTL          (0x0344)
 #define PIO_POW_VAL             (0x0348)
 #define PIO_POW_VOL_SET_CTL     (0x0350)
+
+#define     GPIO_PORT_B       (D1_GPIO_BASE + D1_GPIO_PB_CFG0)
+#define     GPIO_PORT_C       (D1_GPIO_BASE + D1_GPIO_PC_CFG0)
+#define     GPIO_PORT_D       (D1_GPIO_BASE + D1_GPIO_PD_CFG0)
+#define     GPIO_PORT_E       (D1_GPIO_BASE + D1_GPIO_PE_CFG0)
+#define     GPIO_PORT_F       (D1_GPIO_BASE + D1_GPIO_PF_CFG0)
+#define     GPIO_PORT_G       (D1_GPIO_BASE + D1_GPIO_PG_CFG0)
+
+#define     GPIO_PIN_0        (0)
+#define     GPIO_PIN_1        (1)
+#define     GPIO_PIN_2        (2)
+#define     GPIO_PIN_3        (3)
+#define     GPIO_PIN_4        (4)
+#define     GPIO_PIN_5        (5)
+#define     GPIO_PIN_6        (6)
+#define     GPIO_PIN_7        (7)
+#define     GPIO_PIN_8        (8)
+#define     GPIO_PIN_9        (9)
+#define     GPIO_PIN_10       (10)
+#define     GPIO_PIN_11       (11)
+#define     GPIO_PIN_12       (12)
+#define     GPIO_PIN_13       (13)
+#define     GPIO_PIN_14       (14)
+#define     GPIO_PIN_15       (15)
+#define     GPIO_PIN_16       (16)
+#define     GPIO_PIN_17       (17)
+#define     GPIO_PIN_18       (18)
+#define     GPIO_PIN_19       (19)
+#define     GPIO_PIN_20       (20)
+#define     GPIO_PIN_21       (21)
+#define     GPIO_PIN_22       (22)
+#define     GPIO_PIN_23       (23)
+#define     GPIO_PIN_24       (24)
+#define     GPIO_PIN_25       (25)
+
+void d1_set_gpio_mode(uint32_t gpio_port, uint32_t gpio_pin, uint32_t mode);
+void d1_set_gpio_val(uint32_t gpio_port, uint32_t gpio_pin, uint32_t val);
+uint8_t d1_get_gpio_val(uint32_t gpio_port, uint32_t gpio_pin);
 
 #endif
