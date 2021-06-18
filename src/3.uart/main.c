@@ -5,6 +5,7 @@
 #include <printf.h>
 #include <uart.h>
 #include <gpio.h>
+#include <common.h>
 
 //typedef unsigned int virtual_addr_t;
 //typedef unsigned int u32_t;
