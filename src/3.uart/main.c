@@ -76,6 +76,6 @@ int main(void)
 {
     sys_clock_init();
     sys_uart_init();
-    printf("hello world\n");
+    printf("hello world\n\r");
     return 0;
 }
