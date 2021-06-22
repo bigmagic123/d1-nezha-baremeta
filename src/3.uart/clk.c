@@ -26,7 +26,6 @@
  *
  */
 #include <clk.h>
-#include <common.h>
 
 static void set_pll_cpux_axi(void)
 {
@@ -179,6 +178,20 @@ static void set_module(virtual_addr_t addr)
         val &= ~(1 << 29);
         write32(addr, val);
     }
+}
+
+void clk_enable_module_uart(virtual_addr_t addr, uint8_t uart_num)
+{
+    uint32_t val;
+    /* Open the clock gate for uart */
+    val = read32(addr);
+    val |= 1 << (0 + uart_num);
+    write32(addr, val);
+
+    /* Deassert uart reset */
+    val = read32(addr);
+    val |= 1 << (16 + uart_num);
+    write32(addr, val);
 }
 
 void sys_clock_init(void)

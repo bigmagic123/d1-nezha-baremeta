@@ -28,17 +28,7 @@ void sys_uart_init(void)
     d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_8, UART0_MODE_TX);
     d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_9, UART0_MODE_RX);
 
-    /* Open the clock gate for uart0 */
-    addr = 0x0200190c;
-    val = read32(addr);
-    val |= 1 << 0;
-    write32(addr, val);
-
-    /* Deassert uart0 reset */
-    addr = 0x0200190c;
-    val = read32(addr);
-    val |= 1 << 16;
-    write32(addr, val);
+    clk_enable_module_uart(D1_CCU_BASE + CCU_UART_BGR_REG, 0);
 
     /* Config uart0 to 115200-8-1-0 */
     addr = 0x02500000;

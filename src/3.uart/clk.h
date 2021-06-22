@@ -1,6 +1,8 @@
 #ifndef __D1_REG_CCU_H__
 #define __D1_REG_CCU_H__
 
+#include <common.h>
+
 #define D1_CCU_BASE                        (0x02001000)    //D1 CCU
 
 #define CCU_PLL_CPU_CTRL_REG               (0x000)
@@ -61,10 +63,16 @@
 #define CCU_DRAM_CLK_REG                   (0x800)
 #define CCU_MBUS_MAT_CLK_GATING_REG        (0x804)
 #define CCU_DRAM_BGR_REG                   (0x80c)
+#define CCU_UART_BGR_REG                   (0x90C)
+#define CCU_TWI_BGR_REG                    (0x91C)
+#define CCU_SPI0_BGR_REG                   (0x940)
+#define CCU_SPI1_BGR_REG                   (0x944)
+#define CCU_SPI_BGR_REG                    (0x96C)
 #define CCU_RISCV_CLK_REG                  (0xd00)
 #define CCU_RISCV_GATING_REG               (0xd04)
 #define CCU_RISCV_CFG_BGR_REG              (0xd0c)
 
 void sys_clock_init(void);
+void clk_enable_module_uart(virtual_addr_t addr, uint8_t uart_num);
 
 #endif /* __D1_REG_CCU_H__ */
