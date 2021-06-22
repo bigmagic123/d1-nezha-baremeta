@@ -17,22 +17,16 @@ void _putchar(char character)
     // send char to console etc.
 }
 
+#define UART0_MODE_TX   (6)
+#define UART0_MODE_RX   (6)
+
 void sys_uart_init(void)
 {
     virtual_addr_t addr;
     u32_t val;
 
-    /* Config GPIOB8 and GPIOB9 to txd0 and rxd0 */
-    addr = 0x02000030 + 0x04;
-    val = read32(addr);
-    val &= ~(0xf << ((8 & 0x7) << 2));
-    val |= ((0x6 & 0xf) << ((8 & 0x7) << 2));
-    write32(addr, val);
-
-    val = read32(addr);
-    val &= ~(0xf << ((9 & 0x7) << 2));
-    val |= ((0x6 & 0xf) << ((9 & 0x7) << 2));
-    write32(addr, val);
+    d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_8, UART0_MODE_TX);
+    d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_9, UART0_MODE_RX);
 
     /* Open the clock gate for uart0 */
     addr = 0x0200190c;

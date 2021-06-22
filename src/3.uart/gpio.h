@@ -133,7 +133,7 @@
 #define     GPIO_PIN_24       (24)
 #define     GPIO_PIN_25       (25)
 
-void d1_set_gpio_mode(uint32_t gpio_port, uint32_t gpio_pin, uint32_t mode);
+void d1_set_gpio_mode(uint32_t gpio_port, uint32_t gpio_pin, uint16_t mode);
 void d1_set_gpio_val(uint32_t gpio_port, uint32_t gpio_pin, uint32_t val);
 uint8_t d1_get_gpio_val(uint32_t gpio_port, uint32_t gpio_pin);
 

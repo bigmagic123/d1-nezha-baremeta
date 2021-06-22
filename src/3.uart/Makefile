@@ -4,6 +4,7 @@ OBJS =                                       \
 	clk.o						             \
 	uart.o									 \
 	printf.o								 \
+	gpio.o								 \
 	common.o
 # Try to infer the correct TOOLPREFIX if not set
 ifndef TOOLPREFIX
