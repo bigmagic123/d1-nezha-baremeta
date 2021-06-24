@@ -5,7 +5,10 @@ OBJS =                                       \
 	uart.o									 \
 	printf.o								 \
 	gpio.o								 \
-	common.o
+	trap.o \
+	interrupt.o		\
+	common.o		\
+	timer.o
 # Try to infer the correct TOOLPREFIX if not set
 ifndef TOOLPREFIX
 TOOLPREFIX := $(shell if riscv64-unknown-linux-gnu-objdump -i 2>&1 | grep 'elf64-big' >/dev/null 2>&1; \

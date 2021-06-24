@@ -2,6 +2,7 @@
 #define __D1_COMMON_H__
 
 #include <types.h>
+#include <printf.h>
 
 typedef unsigned int virtual_addr_t;
 typedef unsigned int u32_t;
