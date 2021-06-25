@@ -33,49 +33,88 @@ f28-31       ft8-11             FP temporaries                          Caller
 #define REGBYTES 4
 #endif
 
+.macro DISABLE_MIE
+    csrc mstatus, 8
+.endm
+
+.macro ENABLE_MIE
+    csrs mstatus, 8
+.endm
+
+
 /* Save caller registers */
 .macro RESTORE_CONTEXT
     LOAD x1, 0*REGBYTES(sp)
-    LOAD x4, 1*REGBYTES(sp)
-    LOAD x5, 2*REGBYTES(sp)
-    LOAD x6, 3*REGBYTES(sp)
-    LOAD x7, 4*REGBYTES(sp)
-    LOAD x10, 5*REGBYTES(sp)
-    LOAD x11, 6*REGBYTES(sp)
-    LOAD x12, 7*REGBYTES(sp)
-    LOAD x13, 8*REGBYTES(sp)
-    LOAD x14, 9*REGBYTES(sp)
-    LOAD x15, 10*REGBYTES(sp)
-    LOAD x16, 14*REGBYTES(sp)
-    LOAD x17, 15*REGBYTES(sp)
-    LOAD x28, 16*REGBYTES(sp)
-    LOAD x29, 17*REGBYTES(sp)
-    LOAD x30, 18*REGBYTES(sp)
-    LOAD x31, 19*REGBYTES(sp)
+    LOAD x2, 1*REGBYTES(sp)
+    LOAD x3, 2*REGBYTES(sp)
+    LOAD x4, 3*REGBYTES(sp)
+    LOAD x5, 4*REGBYTES(sp)
+    LOAD x6, 5*REGBYTES(sp)
+    LOAD x7, 6*REGBYTES(sp)
+    LOAD x8, 7*REGBYTES(sp)
+    LOAD x9, 8*REGBYTES(sp)
+    LOAD x10, 9*REGBYTES(sp)
+    LOAD x11, 10*REGBYTES(sp)
+    LOAD x12, 11*REGBYTES(sp)
+    LOAD x13, 12*REGBYTES(sp)
+    LOAD x14, 13*REGBYTES(sp)
+    LOAD x15, 14*REGBYTES(sp)
+    LOAD x16, 15*REGBYTES(sp)
+    LOAD x17, 16*REGBYTES(sp)
+    LOAD x18, 17*REGBYTES(sp)
+    LOAD x19, 18*REGBYTES(sp)
+    LOAD x20, 19*REGBYTES(sp)
+    LOAD x21, 20*REGBYTES(sp)
+    LOAD x22, 21*REGBYTES(sp)
+    LOAD x23, 22*REGBYTES(sp)
+    LOAD x24, 23*REGBYTES(sp)
+    LOAD x25, 24*REGBYTES(sp)
+    LOAD x26, 25*REGBYTES(sp)
+    LOAD x27, 26*REGBYTES(sp)
+    LOAD x28, 27*REGBYTES(sp)
+    LOAD x29, 28*REGBYTES(sp)
+    LOAD x30, 29*REGBYTES(sp)
+    LOAD x31, 30*REGBYTES(sp)
+
+    addi sp, sp, 31*REGBYTES
 .endm
 
 
 .macro SAVE_CONTEXT
     /* Allocate stack space for context saving */
-    addi sp, sp, -20*REGBYTES
+    addi sp, sp, -31*REGBYTES
 
     STORE x1, 0*REGBYTES(sp)
-    STORE x4, 1*REGBYTES(sp)
-    STORE x5, 2*REGBYTES(sp)
-    STORE x6, 3*REGBYTES(sp)
-    STORE x7, 4*REGBYTES(sp)
-    STORE x10, 5*REGBYTES(sp)
-    STORE x11, 6*REGBYTES(sp)
-    STORE x12, 7*REGBYTES(sp)
-    STORE x13, 8*REGBYTES(sp)
-    STORE x14, 9*REGBYTES(sp)
-    STORE x15, 10*REGBYTES(sp)
-    STORE x16, 14*REGBYTES(sp)
-    STORE x17, 15*REGBYTES(sp)
-    STORE x28, 16*REGBYTES(sp)
-    STORE x29, 17*REGBYTES(sp)
-    STORE x30, 18*REGBYTES(sp)
-    STORE x31, 19*REGBYTES(sp)
+    STORE x2, 1*REGBYTES(sp)
+    STORE x3, 2*REGBYTES(sp)
+    STORE x4, 3*REGBYTES(sp)
+    STORE x5, 4*REGBYTES(sp)
+    STORE x6, 5*REGBYTES(sp)
+    STORE x7, 6*REGBYTES(sp)
+    STORE x8, 7*REGBYTES(sp)
+    STORE x9, 8*REGBYTES(sp)
+    STORE x10, 9*REGBYTES(sp)
+    STORE x11, 10*REGBYTES(sp)
+    STORE x12, 11*REGBYTES(sp)
+    STORE x13, 12*REGBYTES(sp)
+    STORE x14, 13*REGBYTES(sp)
+    STORE x15, 14*REGBYTES(sp)
+    STORE x16, 15*REGBYTES(sp)
+    STORE x17, 16*REGBYTES(sp)
+    STORE x18, 17*REGBYTES(sp)
+    STORE x19, 18*REGBYTES(sp)
+    STORE x20, 19*REGBYTES(sp)
+    STORE x21, 20*REGBYTES(sp)
+    STORE x22, 21*REGBYTES(sp)
+    STORE x23, 22*REGBYTES(sp)
+    STORE x24, 23*REGBYTES(sp)
+    STORE x25, 24*REGBYTES(sp)
+    STORE x26, 25*REGBYTES(sp)
+    STORE x27, 26*REGBYTES(sp)
+    STORE x28, 27*REGBYTES(sp)
+    STORE x29, 28*REGBYTES(sp)
+    STORE x30, 29*REGBYTES(sp)
+    STORE x31, 30*REGBYTES(sp)
 .endm
 
     
@@ -84,10 +123,13 @@ f28-31       ft8-11             FP temporaries                          Caller
 	.globl _trap_handler
 _trap_handler:
     /* Save the caller saving registers (context) */
+    //mv t0, sp
     SAVE_CONTEXT
+    mv t0, sp
     csrr a0,mcause
     csrr a1,mepc
     call irq_handle_trap
+    mv sp, t0
     RESTORE_CONTEXT
     mret
 

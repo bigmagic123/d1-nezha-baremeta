@@ -2,7 +2,7 @@ OUTPUT_FORMAT("elf64-littleriscv", "elf64-littleriscv", "elf64-littleriscv")
 OUTPUT_ARCH(riscv)
 ENTRY(_start)
 
-STACK_SIZE = 0x100000;
+STACK_SIZE = 0x40000;
 
 MEMORY
 {
@@ -104,6 +104,7 @@ SECTIONS
 
     .stack ALIGN(16) (NOLOAD) :
     {
+        . = ALIGN(64);
         PROVIDE(__stack_start = .);
         . += STACK_SIZE;
         . = ALIGN(16);

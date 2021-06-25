@@ -1,20 +1,24 @@
 #include <interrupt.h>
 #include <common.h>
+#include <clint.h>
 
-uint32_t irq_handle_trap(uint32_t mcause, uint32_t epc)
+void irq_handle_trap(uint32_t mcause, uint32_t epc)
 {
-    printf("irq!\n");	
-    return 0;
+    all_interrupt_disable();
+    printf("mcause:%llx,epc:%llx\n\r", mcause, epc);
+    d1_clint_soft_irq_clear();
+    all_interrupt_enable();
+    //while(1);
 }
 
 void irq_enable()
 {
 
-    return 0;
+   // return 0;
 }
 
 void irq_disable()
 {
 
-    return 0;
+   // return 0;
 }
