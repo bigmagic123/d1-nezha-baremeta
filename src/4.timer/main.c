@@ -28,8 +28,8 @@ int main(void)
     sys_uart0_init();
     table_val_set();
     printf("hello world\n\r");
-    all_interrupt_enable();
-    timer_init();
+    //all_interrupt_enable();
+    //timer_init();
     printf("enter ok!\n");
     //csr_read(CSR_PLIC_BASE);
     while(1)

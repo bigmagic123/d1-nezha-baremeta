@@ -11,6 +11,7 @@ _start:
     /*disable interrupt*/
     csrw mie, zero
 
+#ifndef  RISCV64_QEMU
     /*enable theadisaee*/
     li t1, EN_THEADISAEE
     csrs mxstatus, t1
@@ -18,7 +19,7 @@ _start:
     /*invaild ICACHE/DCACHE/BTB/BHT*/
     li t2, 0x30013
     csrs mcor, t2
-
+#endif
     la sp, __stack_end
     jal clear_bss
     jal  main

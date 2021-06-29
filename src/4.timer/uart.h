@@ -2,6 +2,7 @@
 #define __D1_UART_H__
 
 #include <common.h>
+#include <riscv64.h>
 
 //D1 debug uart use GPIOB8(TX0) and GPIOB9(RX0)
 #define UART_BASE   (0X02500000)
@@ -50,13 +51,35 @@
 
 #define UART_LSR_FIFOE		0x80    /* Fifo error */
 #define UART_LSR_TEMT		0x40    /* Transmitter empty */
-#define UART_LSR_THRE		0x20    /* Transmit-hold-register empty */
+#define UART_LSR_THRE       0x20   /* Transmit-hold-register empty */
 #define UART_LSR_BI		0x10    /* Break interrupt indicator */
 #define UART_LSR_FE		0x08    /* Frame error indicator */
 #define UART_LSR_PE		0x04    /* Parity error indicator */
 #define UART_LSR_OE		0x02    /* Overrun error indicator */
 #define UART_LSR_DR		0x01    /* Receiver data ready */
 #define UART_LSR_BRK_ERROR_BITS	0x1E    /* BI, FE, PE, OE bits */
+
+#ifdef RISCV64_QEMU
+
+#define QEMU_UART_BASE            (0x10000000L)
+
+#define RHR 0    // Receive Holding Register (read mode)
+#define THR 0    // Transmit Holding Register (write mode)
+#define DLL 0    // LSB of Divisor Latch (write mode)
+#define IER 1    // Interrupt Enable Register (write mode)
+#define DLM 1    // MSB of Divisor Latch (write mode)
+#define FCR 2    // FIFO Control Register (write mode)
+#define ISR 2    // Interrupt Status Register (read mode)
+#define LCR 3    // Line Control Register
+#define MCR 4    // Modem Control Register
+#define LSR 5    // Line Status Register
+#define MSR 6    // Modem Status Register
+#define SPR 7    // ScratchPad Register
+
+#define LSR_RX_READY (1 << 0)
+#define LSR_TX_IDLE  (1 << 5)
+
+#endif
 
 void sys_uart0_init(void);
 void sys_uart_putc(uint8_t uart_num, char c);

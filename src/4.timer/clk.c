@@ -25,6 +25,7 @@
  * SOFTWARE.
  *
  */
+#include <riscv64.h>
 #include <clk.h>
 
 static void set_pll_cpux_axi(void)
@@ -196,6 +197,7 @@ void clk_enable_module_uart(virtual_addr_t addr, uint8_t uart_num)
 
 void sys_clock_init(void)
 {
+#ifndef RISCV64_QEMU
     set_pll_cpux_axi();
     set_pll_periph0();
     set_ahb();
@@ -208,4 +210,5 @@ void sys_clock_init(void)
     set_module(D1_CCU_BASE + CCU_PLL_VE_CTRL);
     set_module(D1_CCU_BASE + CCU_PLL_AUDIO0_CTRL_REG);
     set_module(D1_CCU_BASE + CCU_PLL_AUDIO1_CTRL_REG);
+#endif
 }

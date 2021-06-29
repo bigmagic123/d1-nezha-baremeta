@@ -5,6 +5,8 @@
 extern "C" {
 #endif
 
+#define RISCV64_QEMU  1
+
 #define LREG    ld
 #define SREG    sd
 #define REGSZ   8
@@ -13,24 +15,24 @@ extern "C" {
 #define MSTATUS_UIE            (1 << 0)
 #define MSTATUS_SIE            (1 << 1)
 #define MSTATUS_MIE            (1 << 3)
-#define MSTATUS_UPIE        (1 << 4)
-#define MSTATUS_SPIE        (1 << 5)
-#define MSTATUS_MPIE        (1 << 7)
+#define MSTATUS_UPIE           (1 << 4)
+#define MSTATUS_SPIE           (1 << 5)
+#define MSTATUS_MPIE           (1 << 7)
 #define MSTATUS_SPP            (1 << 8)
 #define MSTATUS_MPP            (3 << 11)
 #define MSTATUS_RVV            (3 << 9)
-#define MSTATUS_FS            (3 << 13)
-#define MSTATUS_XS            (3 << 15)
-#define MSTATUS_MPRV        (1 << 17)
+#define MSTATUS_FS             (3 << 13)
+#define MSTATUS_XS             (3 << 15)
+#define MSTATUS_MPRV           (1 << 17)
 #define MSTATUS_SUM            (1 << 18)
 #define MSTATUS_MXR            (1 << 19)
 #define MSTATUS_TVM            (1 << 20)
-#define MSTATUS_TW            (1 << 21)
+#define MSTATUS_TW             (1 << 21)
 #define MSTATUS_TSR            (1 << 22)
-#define MSTATUS32_SD        (1 << 31)
+#define MSTATUS32_SD           (1 << 31)
 #define MSTATUS_UXL            (3ULL << 32)
 #define MSTATUS_SXL            (3ULL << 34)
-#define MSTATUS64_SD        (1ULL << 63)
+#define MSTATUS64_SD           (1ULL << 63)
 
 #define MIP_USIP            (1 << 0)
 #define MIP_SSIP            (1 << 1)
