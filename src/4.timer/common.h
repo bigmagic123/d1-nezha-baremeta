@@ -6,6 +6,7 @@
 
 typedef unsigned int virtual_addr_t;
 typedef unsigned int u32_t;
+typedef unsigned char u8_t;
 
 typedef unsigned long uint64_t;
 typedef unsigned int uint32_t;

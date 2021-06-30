@@ -78,6 +78,7 @@
 
 #define LSR_RX_READY (1 << 0)
 #define LSR_TX_IDLE  (1 << 5)
+#define UART_LSR (volatile uint8_t *)(QEMU_UART_BASE + 0x05)
 
 #endif
 

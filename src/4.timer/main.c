@@ -12,15 +12,6 @@ void _putchar(char character)
     // send char to console etc.
 }
 
-// #define CSR_MCOR         0x7c2
-// #define CSR_MHCR         0x7c1
-// #define CSR_MCCR2        0x7c3
-// #define CSR_MHINT        0x7c5
-// #define CSR_MXSTATUS     0x7c0
-// #define CSR_PLIC_BASE    0xfc1
-// #define CSR_MRMR         0x7c6
-// #define CSR_MRVBR        0x7c7
-
 int main(void)
 {
     char ch = -1;
@@ -31,7 +22,6 @@ int main(void)
     //all_interrupt_enable();
     //timer_init();
     printf("enter ok!\n");
-    //csr_read(CSR_PLIC_BASE);
     while(1)
     {
         ch = sys_uart_getc(0);

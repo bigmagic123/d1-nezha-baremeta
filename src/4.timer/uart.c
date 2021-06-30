@@ -13,6 +13,7 @@ void sys_uart_putc(uint8_t uart_num, char c)
     while((read32(addr + UART_LSR) & UART_LSR_THRE) == 0);
     write32(addr + UART_THR, c);
 #else
+    while((*UART_LSR & UART_LSR_THRE) == 0);
     write32(QEMU_UART_BASE + THR, c);
 #endif
 }
@@ -31,11 +32,8 @@ char sys_uart_getc(uint8_t uart_num)
         return -1;
     }
 #else
-    // read32(QEMU_UART_BASE + 3);
-    // return -1;
-    //LSR
     virtual_addr_t addr = QEMU_UART_BASE;
-    if (read32(addr + LSR) & LSR_RX_READY){
+    if (*UART_LSR & LSR_RX_READY){
         return read32(addr + RHR);
     } 
     else 
