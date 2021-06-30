@@ -1,0 +1,5 @@
+project('sdboot', 'c')
+add_project_arguments('-Wall', '-O2', '-fno-omit-frame-pointer', '-ggdb' ,'-march=rv64gcvxtheadc', '-mabi=lp64d', '-mtune=c906', '-nostartfiles', '-MD', '-mcmodel=medany', '-ffreestanding', '-fno-common' ,'-nostdlib', '-mno-relax', '-I.', language: 'c')
+linker_script = join_paths(meson.current_source_dir(), 'link.ld')
+add_project_link_arguments('-T', linker_script ,'-nostdlib', '-nostartfiles', language: 'c')
+executable('sdboot', ['startup.S','main.c'])

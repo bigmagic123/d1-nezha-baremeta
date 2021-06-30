@@ -18,7 +18,6 @@ SECTIONS
     {
         PROVIDE(__image_start = .);
         PROVIDE(__text_start = .);
-        start.o (.text*)
         *(.text*)
         *(.init.text)
         *(.exit.text)
