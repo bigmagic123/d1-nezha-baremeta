@@ -2,6 +2,8 @@
 #include "riscv64.h"
 #include "linkage.h"
 
+.section ".start", "ax"
+
 #define REGBYTES        4
 /*mxstatus*/
 #define    EN_THEADISAEE    (0x1 << 22)

@@ -13,12 +13,15 @@ MEMORY
 
 SECTIONS
 {
+    .start :
+    {
+        *(.start);
+    } > ram
+
     .text :
     {
         PROVIDE(__image_start = .);
         PROVIDE(__text_start = .);
-        start.o (.text*)
-        main.o (.text*)
         *(.text*)
         *(.init.text)
         *(.exit.text)

@@ -1,1 +1,1 @@
-qemu-system-riscv64 -M virt -bios startup.elf -nographic
+qemu-system-riscv64 -M virt -bios timer -nographic
