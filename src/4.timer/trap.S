@@ -123,13 +123,10 @@ f28-31       ft8-11             FP temporaries                          Caller
 	.globl _trap_handler
 _trap_handler:
     /* Save the caller saving registers (context) */
-    //mv t0, sp
     SAVE_CONTEXT
-    mv t0, sp
     csrr a0,mcause
     csrr a1,mepc
     call irq_handle_trap
-    mv sp, t0
     RESTORE_CONTEXT
     mret
 
@@ -147,5 +144,5 @@ all_interrupt_disable:
 
   .global all_interrupt_enable
 all_interrupt_enable:
-    csrrwi a0, mstatus, 8
+    csrs mstatus, 8
     ret

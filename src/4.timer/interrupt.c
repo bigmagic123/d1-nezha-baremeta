@@ -8,7 +8,6 @@ void irq_handle_trap(uint32_t mcause, uint32_t epc)
     printf("mcause:%llx,epc:%llx\n\r", mcause, epc);
     d1_clint_soft_irq_clear();
     all_interrupt_enable();
-    //while(1);
 }
 
 void irq_enable()

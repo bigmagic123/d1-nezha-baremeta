@@ -26,13 +26,21 @@ void d1_clint_timer_cmp_set_val(int val)
     // sdelay(1000);
     // time_cnt = read32(D1_MTIME);
 
-    write32(D1_MSIP0, 1);
+    //write32(D1_MSIP0, 1);
+    write32(CLINT, 1);
     
     //printf("time_cnt is %d\n", soft);
+    //int time_cnt = read32(CLINT);
+    //printf("time_cnt is %d\n", time_cnt);
+
+    //while(1);
 }
 
 
 void d1_clint_soft_irq_clear(void)
 {
-    write32(D1_MSIP0, 0);
+    //write32(D1_MSIP0, 0);
+    write32(CLINT, 0);
+    // int time_cnt = read32(CLINT);
+    // printf("time_cnt is %d\n", time_cnt);
 }
