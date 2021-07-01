@@ -1,0 +1,15 @@
+[binaries]
+cross_pass = '/home/zhaofujin/d1/toolchain-thead-glibc/riscv64-glibc-gcc-thead_20200702/bin/riscv64-unknown-linux-gnu-' 
+c = cross_pass + 'gcc'
+cpp = cross_pass + 'g++'
+ar = cross_pass + 'ar'
+strip = cross_pass + 'strip'
+
+[properties]
+needs_exe_wrapper = true
+
+[host_machine]
+system = 'bare metal'
+cpu_family = 'riscv64'
+cpu = 'c906'
+endian = 'little'
