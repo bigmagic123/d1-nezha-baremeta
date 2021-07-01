@@ -15,6 +15,7 @@ void _putchar(char character)
 int main(void)
 {
     char ch = -1;
+    int cnt = 0;
     sys_clock_init();
     sys_uart0_init();
     table_val_set();
@@ -29,6 +30,13 @@ int main(void)
         {
             printf("%c\n\r", ch);
         }
+        cnt = cnt+1;
+        if(cnt % 1000 == 0)
+        {
+            d1_clint_soft_irq_init();
+            printf("%ds\n\r", cnt/1000);
+        }
+        sdelay(1000);
     }
     return 0;
 }

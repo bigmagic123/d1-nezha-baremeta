@@ -16,7 +16,7 @@ void d1_clint_timer_init()
 
 void d1_clint_soft_irq_init()
 {
-
+    write32(CLINT, 1);
 }
 
 void d1_clint_timer_cmp_set_val(int val)

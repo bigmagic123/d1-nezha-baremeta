@@ -15,6 +15,7 @@
 
 void d1_clint_timer_cmp_set_val(int val);
 void d1_clint_soft_irq_clear(void);
+void d1_clint_soft_irq_init(void);
 
 #ifdef RISCV64_QEMU
 
