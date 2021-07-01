@@ -6,7 +6,7 @@ void irq_handle_trap(uint32_t mcause, uint32_t epc)
 {
     all_interrupt_disable();
     printf("mcause:%llx,epc:%llx\n\r", mcause, epc);
-    d1_clint_soft_irq_clear();
+    clint_soft_irq_clear();
     all_interrupt_enable();
 }
 

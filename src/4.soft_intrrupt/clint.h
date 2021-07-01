@@ -11,9 +11,9 @@
 #define D1_STIMECMPL0   0x1400D000
 #define D1_STIMECMPH0   0x1400D004
 
-void d1_clint_timer_cmp_set_val(int val);
-void d1_clint_soft_irq_clear(void);
-void d1_clint_soft_irq_init(void);
+void clint_timer_cmp_set_val(int val);
+void clint_soft_irq_clear(void);
+void clint_soft_irq_init(void);
 
 #ifdef RISCV64_QEMU
 

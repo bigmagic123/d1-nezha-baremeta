@@ -21,8 +21,8 @@ int main(void)
     table_val_set();
     printf("hello world\n\r");
     all_interrupt_enable();
-    timer_init();
     printf("enter ok!\n");
+    clint_soft_irq_init();
     while(1)
     {
         ch = sys_uart_getc(0);
@@ -33,7 +33,7 @@ int main(void)
         cnt = cnt+1;
         if(cnt % 1000 == 0)
         {
-            clint_soft_irq_init();
+            clint_soft_irq_start();
             printf("%ds\n\r", cnt/1000);
         }
         sdelay(1000);

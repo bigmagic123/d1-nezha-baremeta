@@ -1,7 +1,7 @@
 project('soft_irq', 'c')
 inc = include_directories('printf')
 add_project_arguments('-Wall', '-O2', '-fno-omit-frame-pointer', '-ggdb' ,'-march=rv64gcvxtheadc', '-mabi=lp64d', '-mtune=c906', '-nostartfiles', '-MD', '-mcmodel=medany', '-ffreestanding', '-fno-common' ,'-nostdlib', '-mno-relax', '-I.','-I inc', language: 'c')
-;add_project_arguments('-DRISCV64_QEMU=1', language: 'c')
+#add_project_arguments('-DRISCV64_QEMU=1', language: 'c')
 linker_script = join_paths(meson.current_source_dir(), 'link.ld')
 add_project_link_arguments('-T', linker_script ,'-nostdlib', '-nostartfiles', language: 'c')
 executable('soft_irq', ['clint.c','clk.c', 'common.c', 'gpio.c', 'interrupt.c', 'main.c', 'printf.c', 'uart.c', 'timer.c', 'start.S','trap.S'],include_directories:[inc])
