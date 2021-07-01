@@ -20,13 +20,13 @@ void clint_soft_irq_init(void);
 //ask the CLINT for a timer interrupt.
 #define CLINT                   (0x2000000L)
 #define CLINT_MTIMECMPL(hartid)  (CLINT + 0x4000 + 4*(hartid))
-#define CLINT_MTIMECMPH(hartid)  (CLINT + 0x4000 + 4*(hartid))
+#define CLINT_MTIMECMPH(hartid)  (CLINT + 0x4004 + 4*(hartid))
 #define CLINT_MTIME             (CLINT + 0xBFF8)            // cycles since boot.
 
 #else
 #define CLINT                    (0x14000000L)
 #define CLINT_MTIMECMPL(hartid)  (CLINT + 0x4000 + 4*(hartid))
-#define CLINT_MTIMECMPH(hartid)  (CLINT + 0x4000 + 4*(hartid))
+#define CLINT_MTIMECMPH(hartid)  (CLINT + 0x4004 + 4*(hartid))
 
 #endif
 

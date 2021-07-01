@@ -27,7 +27,13 @@ void clint_soft_irq_clear(void)
 void clint_timer_init()
 {
     csr_clear(mie, MIP_MTIP | MIP_MSIP);
+    *(uint64_t*)CLINT_MTIMECMPL(0) = *(uint64_t*)CLINT_MTIME + 10000;
     csr_set(mie,  MIP_MTIP); //set m-mode sip
+
+    printf("cur val is %d\n", *(uint64_t*)CLINT_MTIME);
+    sdelay(1000);
+    printf("cur val is %d\n", *(uint64_t*)CLINT_MTIME);
+    
 }
 
 void clint_timer_cmp_set_val(int val)
@@ -36,9 +42,7 @@ void clint_timer_cmp_set_val(int val)
     // 17   16-12   11  10  9    8   7    6    5     4    3      2     1    0
     //MOIE         MEIE    SEIE     MTIE      STIE       MSIE         SSIE
     //now we can user MTIE
-    csr_clear(mie, MIP_MTIP | MIP_MSIP);
-    //*(uint64_t*)CLINT_MTIMECMP(r_mhartid()) = *(uint64_t*)CLINT_MTIME + interval;
-    csr_set(mie,  MIP_MSIP);
+    *(uint64_t*)CLINT_MTIMECMPL(0) = *(uint64_t*)CLINT_MTIME + 10000000;
 }
 
 

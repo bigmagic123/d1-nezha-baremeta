@@ -22,7 +22,7 @@ int main(void)
     printf("hello world\n\r");
     all_interrupt_enable();
     printf("enter ok!\n");
-    //clint_timer_init();
+    clint_timer_init();
     while(1)
     {
         ch = sys_uart_getc(0);
