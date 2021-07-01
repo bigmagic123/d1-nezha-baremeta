@@ -5,8 +5,6 @@
 extern "C" {
 #endif
 
-#define RISCV64_QEMU  1
-
 #define LREG    ld
 #define SREG    sd
 #define REGSZ   8

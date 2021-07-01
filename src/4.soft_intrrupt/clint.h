@@ -1,8 +1,6 @@
 #ifndef __D1_CLINT_H__
 #define __D1_CLINT_H__
 
-#include <riscv64.h>
-
 //#define D1_PLIC         0x10000000
 #define D1_MSIP0        0x14000000
 #define D1_MTIMECMPL0   0x14004000
@@ -24,6 +22,11 @@ void d1_clint_soft_irq_init(void);
 #define CLINT_MTIMECMPL(hartid)  (CLINT + 0x4000 + 4*(hartid))
 #define CLINT_MTIMECMPH(hartid)  (CLINT + 0x4000 + 4*(hartid))
 #define CLINT_MTIME             (CLINT + 0xBFF8)            // cycles since boot.
+
+#else
+#define CLINT                    (0x14000000L)
+#define CLINT_MTIMECMPL(hartid)  (CLINT + 0x4000 + 4*(hartid))
+#define CLINT_MTIMECMPH(hartid)  (CLINT + 0x4000 + 4*(hartid))
 
 #endif
 

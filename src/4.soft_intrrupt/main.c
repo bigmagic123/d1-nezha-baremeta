@@ -33,7 +33,7 @@ int main(void)
         cnt = cnt+1;
         if(cnt % 1000 == 0)
         {
-            d1_clint_soft_irq_init();
+            clint_soft_irq_init();
             printf("%ds\n\r", cnt/1000);
         }
         sdelay(1000);

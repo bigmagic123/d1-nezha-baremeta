@@ -7,14 +7,12 @@
 
 //timer
 //riscv need 64 bit mtime
-
-
-void d1_clint_timer_init()
+void clint_timer_init()
 {
 
 }
 
-void d1_clint_soft_irq_init()
+void clint_soft_irq_init()
 {
     write32(CLINT, 1);
 }
