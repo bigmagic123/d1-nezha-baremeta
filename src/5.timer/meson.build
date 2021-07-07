@@ -4,4 +4,11 @@ add_project_arguments('-Wall', '-O2', '-fno-omit-frame-pointer', '-ggdb' ,'-marc
 #add_project_arguments('-DRISCV64_QEMU=1', language: 'c')
 linker_script = join_paths(meson.current_source_dir(), 'link.ld')
 add_project_link_arguments('-T', linker_script ,'-nostdlib', '-nostartfiles', language: 'c')
-executable('timer', ['clint.c','clk.c', 'common.c', 'gpio.c', 'interrupt.c', 'main.c', 'printf.c', 'uart.c', 'timer.c', 'start.S','trap.S'],include_directories:[inc])
+exe = executable('timer', ['clint.c','clk.c', 'common.c', 'gpio.c', 'interrupt.c', 'main.c', 'printf.c', 'uart.c', 'timer.c', 'start.S','trap.S'],include_directories:[inc])
+
+hex = custom_target('Image',
+  build_by_default: true,
+  input : exe,
+  output : 'Image',
+  command : [meson.get_external_property('objcopy'), '-O', 'binary','@INPUT@','@OUTPUT@'],
+)

@@ -1,6 +1,6 @@
 #include <common.h>
 
-static inline uint64_t counter(void)
+uint64_t counter(void)
 {
     uint64_t cnt;
     __asm__ __volatile__("csrr %0, time\n" : "=r"(cnt) :: "memory");
