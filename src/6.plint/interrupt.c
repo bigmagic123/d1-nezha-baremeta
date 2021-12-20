@@ -34,14 +34,14 @@ Interrupt Exception Code  Description
 
 */
 
+#define M_MODE_EXT_IRQ  11
 void irq_handle_trap(uint64_t mcause, uint64_t epc)
 {
-   uint32_t irq_cause = 0;
-   all_interrupt_disable();
-   printf("mcause:%llx,epc:%llx\n\r", mcause, epc);
-   if(mcause >> 63)
-   {
-      irq_cause = (mcause & 0xffffffff);
+    all_interrupt_disable();
+    printf("mcause:%llx,epc:%llx\n\r", mcause, epc);
+    if(mcause & (1UL << 63))
+    {
+      int irq_cause = (mcause & 0xffffffff);
       switch(irq_cause)
       {
          //Machine software interrupt
@@ -52,16 +52,21 @@ void irq_handle_trap(uint64_t mcause, uint64_t epc)
          case 7:
             clint_timer_cmp_set_val(1000);
             break;
+         case 11:
+            plic_handle_irq();
+            break;
          default:
             break;
       }
-   }
-   else
-   {
-      printf("trap!!! is %p\n", read_csr(mstatus));
-      //trap
-   }
-   all_interrupt_enable();
+       //clint_soft_irq_clear();
+    }
+    else
+    {
+       printf("trap!!! is %p\n", read_csr(mstatus));
+       //trap
+    }
+    
+    all_interrupt_enable();
 }
 
 void irq_enable()

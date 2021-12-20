@@ -42,6 +42,8 @@ void c906_plic_mmode_enable(uint32_t irq_num)
     int temp = read32(C906_PLIC_PHY_ADDR + PLIC_MIE_REG(enable_reg_cnt));
     int write_val = temp | (1 << num);
     write32(C906_PLIC_PHY_ADDR + PLIC_MIE_REG(enable_reg_cnt), write_val);
+
+    csr_set(mie, MIP_MEIP);
 }
 
 //disable
@@ -102,6 +104,11 @@ void plic_handle_irq(void)
     {
         printf("irq is %d\n",irq);
         plic_complete(irq);
+
+        if(irq == 18)
+        {
+            printf("recv:%c\n",sys_uart_getc(0));
+        }
     }
     csr_set(mie, MIP_MEIP);
 }

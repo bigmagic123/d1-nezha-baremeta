@@ -7,20 +7,14 @@
 
 void sys_uart_putc(uint8_t uart_num, char c)
 {
-#ifndef RISCV64_QEMU
     virtual_addr_t addr = UART_BASE + uart_num * 0x4000;
 
     while((read32(addr + UART_LSR) & UART_LSR_THRE) == 0);
     write32(addr + UART_THR, c);
-#else
-    while((*UART_LSR & UART_LSR_THRE) == 0);
-    write32(QEMU_UART_BASE + THR, c);
-#endif
 }
 
 char sys_uart_getc(uint8_t uart_num)
 {
-#ifndef RISCV64_QEMU
     virtual_addr_t addr = UART_BASE + uart_num * 0x4000;
 
     if((read32(addr + UART_LSR) & UART_LSR_DR))
@@ -31,22 +25,11 @@ char sys_uart_getc(uint8_t uart_num)
     {
         return -1;
     }
-#else
-    virtual_addr_t addr = QEMU_UART_BASE;
-    if (*UART_LSR & LSR_RX_READY){
-        return read32(addr + RHR);
-    } 
-    else 
-    {
-        return -1;
-    }
-#endif
 }
 
 void sys_uart0_init(void)
 {
     u32_t val;
-#ifndef RISCV64_QEMU
     virtual_addr_t addr;
     d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_8, UART0_MODE_TX);
     d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_9, UART0_MODE_RX);
@@ -72,20 +55,10 @@ void sys_uart0_init(void)
     val &= ~0x1f;
     val |= (0x3 << 0) | (0 << 2) | (0x0 << 3); //8 bit, 1 stop bit,parity disabled
     write32(addr + UART_LCR, val);
-#else
-    //qemu virt next
-    write32(QEMU_UART_BASE + IER, 0x00);
-    val = read32(QEMU_UART_BASE + LCR);
-    write32(QEMU_UART_BASE + LCR, val | (1 << 7));
-    write32(QEMU_UART_BASE + DLL, 0x03);
-    write32(QEMU_UART_BASE + DLM, 0x00);
 
-    write32(QEMU_UART_BASE + LCR, (3 << 0));
+    write32(addr + UART_LCR, val);
 
-    /*
-     * enable receive interrupts.
-     */
-    // val = read32(QEMU_UART_BASE + IER);
-    // write32(QEMU_UART_BASE + IER, val | (1 << 0));
-#endif
+    //enable uart rx irq
+    write32(addr + UART_IER, 0x01);
+
 }

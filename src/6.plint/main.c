@@ -12,6 +12,13 @@ void _putchar(char character)
     // send char to console etc.
 }
 
+#define PLIC_UART0_NUM  (18)
+#define PLIC_UART1_NUM  (19)
+#define PLIC_UART2_NUM  (20)
+#define PLIC_UART3_NUM  (21)
+#define PLIC_UART4_NUM  (22)
+#define PLIC_UART5_NUM  (23)
+
 int main(void)
 {
     char ch = -1;
@@ -22,14 +29,11 @@ int main(void)
     printf("hello world\n\r");
     all_interrupt_enable();
     printf("enter ok!\n");
-    clint_timer_init();
+
+    c906_plic_mmode_enable(PLIC_UART0_NUM);
+    
     while(1)
     {
-        ch = sys_uart_getc(0);
-        if(ch != 0xff)
-        {
-            printf("%c\n\r", ch);
-        }
         sdelay(1000);
     }
     return 0;
