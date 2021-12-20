@@ -580,6 +580,13 @@
 					 (s32)(((insn) >> 7) & 0x1f))
 #define MASK_FUNCT3			0x7000
 
+#define CSR_MSTATUS 0x300
+
+//DECLARE_CSR(mstatus, CSR_MSTATUS)
+
+#define read_csr(reg) ({ unsigned long __tmp; \
+  asm volatile ("csrr %0, " #reg : "=r"(__tmp)); \
+  __tmp; })
 /* clang-format on */
 
 #endif

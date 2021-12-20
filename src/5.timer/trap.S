@@ -137,12 +137,28 @@ table_val_set:
     csrw mtvec, t0
     jr ra
 
+/*
+Reset to 'm' mode.
+mstatus.mie = 0, Disable all interrupts.
+mstatus.mprv = 0, Select normal memory access privilege level.
+misa = DEFAULT_MISA, enable all extensions.
+mcause = 0 or Implementation defined RESET_MCAUSE_VALUES.
+PC = Implementation defined RESET_VECTOR.
+
+mstatus.mie 
+3   2  1  0
+
+
+csrrc:CSR read and clear
+csrrc zero,csr,rs1
+
+*/
   .global all_interrupt_disable
 all_interrupt_disable:
-    csrrci a0, mstatus, 8
+    csrrci a0, mstatus, 0x8
     ret
 
   .global all_interrupt_enable
 all_interrupt_enable:
-    csrs mstatus, 8
+    csrs mstatus, 0x8
     ret

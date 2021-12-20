@@ -11,6 +11,7 @@
 .globl _start
 _start:
     /*disable interrupt*/
+    csrrci x0, mstatus, 0x8
     csrw mie, zero
 
 #ifndef  RISCV64_QEMU

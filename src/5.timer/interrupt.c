@@ -1,6 +1,7 @@
 #include <interrupt.h>
 #include <common.h>
 #include <clint.h>
+#include "riscv_encoding.h"
 //mcause info
 /*
 Interrupt Exception Code  Description
@@ -57,7 +58,7 @@ void irq_handle_trap(uint64_t mcause, uint64_t epc)
    }
    else
    {
-      printf("trap!!!\n");
+      printf("trap!!! is %p\n", read_csr(mstatus));
       //trap
    }
    all_interrupt_enable();
