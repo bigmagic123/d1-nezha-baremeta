@@ -105,9 +105,16 @@ void plic_handle_irq(void)
         printf("irq is %d\n",irq);
         plic_complete(irq);
 
+        //uart
         if(irq == 18)
         {
             printf("recv:%c\n",sys_uart_getc(0));
+        }
+
+        //gpio pb
+        if(irq == 85)
+        {
+            printf("pb %08x\n", d1_get_pb_irq_status());
         }
     }
     csr_set(mie, MIP_MEIP);

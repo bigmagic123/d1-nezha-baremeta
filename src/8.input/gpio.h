@@ -133,8 +133,21 @@
 #define     GPIO_PIN_24       (24)
 #define     GPIO_PIN_25       (25)
 
+#define     GPIO_B_EXT_INTERRUPT_CONFIG  (D1_GPIO_BASE + D1_GPIO_PB_EINT_CFG0)
+#define     GPIO_B_EXT_INTERRUPT_CONFIG1 (D1_GPIO_BASE + D1_GPIO_PB_EINT_CFG0 + 0x04)
+#define     GPIO_B_EXT_INTERRUPT_CTRL    (D1_GPIO_BASE + D1_GPIO_PB_EINT_CTL)
+#define     GPIO_B_EXT_INTERRUPT_STATUS  (D1_GPIO_BASE + D1_GPIO_PB_EINT_STATUS)
+#define     GPIO_B_EXT_INTERRUPT_DEB     (D1_GPIO_BASE + D1_GPIO_PC_EINT_DEB)
+
+#define POSITIVE_EDGE       (0x00)
+#define NEGATIVE_EDGE       (0x01)
+#define HIGH_LEVEL          (0x02)
+#define LOW_LEVEL           (0x03)
+#define DOUBLE_LEVEL        (0x04)
+
 void d1_set_gpio_mode(uint32_t gpio_port, uint32_t gpio_pin, uint16_t mode);
 void d1_set_gpio_val(uint32_t gpio_port, uint32_t gpio_pin, uint32_t val);
 uint8_t d1_get_gpio_val(uint32_t gpio_port, uint32_t gpio_pin);
 
+void d1_set_gpio_irq_enable(uint32_t gpio_port, uint32_t gpio_pin, uint32_t cfg, uint8_t enable);
 #endif

@@ -22,6 +22,16 @@ void _putchar(char character)
 
 #define GPIO_INPUT      (0x00)
 #define GPIO_OUTPUT     (0x01)
+#define GPIO_EINT       (14)
+
+#define PLIC_GPIOB_NS   (85)
+#define PLIC_GPIOC_NS   (87)
+#define PLIC_GPIOD_NS   (89)
+#define PLIC_GPIOE_NS   (91)
+#define PLIC_GPIOF_NS   (93)
+#define PLIC_GPIOG_NS   (95)
+//#define TEST_POLL
+#define TEST_GPIO_IRQ
 
 int main(void)
 {
@@ -33,14 +43,30 @@ int main(void)
     printf("hello world\n\r");
     all_interrupt_enable();
 
-    d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_5, GPIO_INPUT);
+#ifdef TEST_POLL
+    d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_4, GPIO_INPUT);
 
     int read_val = 0;
     while(1)
     {
         sdelay(1000 * 1000);//1s
-        read_val = d1_get_gpio_val(GPIO_PORT_B, GPIO_PIN_5);
+        read_val = d1_get_gpio_val(GPIO_PORT_B, GPIO_PIN_4);
         printf("read gpio is %d\n", read_val);
     }
+#endif
+
+#ifdef TEST_GPIO_IRQ
+    d1_set_gpio_mode(GPIO_PORT_B, GPIO_PIN_4, GPIO_EINT);
+    d1_set_gpio_irq_enable(GPIO_PORT_B, GPIO_PIN_4, LOW_LEVEL, 1);
+    c906_plic_mmode_enable(PLIC_GPIOB_NS);
+    int read_val = 0;
+    while(1)
+    {
+        sdelay(1000 * 1000);//1s
+        // read_val = d1_get_gpio_val(GPIO_PORT_B, GPIO_PIN_4);
+        // printf("read gpio is %d\n", read_val);
+    }
+#endif
+
     return 0;
 }
