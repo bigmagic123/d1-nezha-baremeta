@@ -38,10 +38,10 @@ int main(void)
 
     while(1)
     {
-        printf("low\n");
+        printf("low\n\r");
         d1_set_gpio_val(GPIO_PORT_D, GPIO_PIN_22, 0);
         sdelay(1000 * 1000);//1s
-        printf("high\n");
+        printf("high\n\r");
         d1_set_gpio_val(GPIO_PORT_D, GPIO_PIN_22, 1);
         sdelay(1000 * 1000);
     }
